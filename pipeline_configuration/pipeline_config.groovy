@@ -3,12 +3,12 @@ libraries {
 }
 
 application_environments{
-  dev{
+  @merge dev{
     ip_addresses = [ "1.2.3.4", "1.2.3.5" ]
 	CH_ENV = "DEV"
   }
-  test
-  prod{
+  @merge test
+  @merge prod{
     ip_addresses = [ "1.2.3.6", "1.2.3.7" ]
   }
 }

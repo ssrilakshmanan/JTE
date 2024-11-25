@@ -1,7 +1,8 @@
 allow_scm_jenkinsfile = false
 
 libraries {
-	maven
+    testlib
+	//maven
 }
 
 application_environment {

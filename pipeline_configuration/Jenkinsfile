@@ -1,5 +1,30 @@
-//deploy_to dev
-
-echo dev.CH_ENV
-
-echo dev.APP_NAME
+pipeline {
+	agent any
+	tools {
+		maven "maven-3.9.8"
+	}
+    parameters {
+       choice choices: ['dev','stage','trn'] description: 'Pick a build Environment' name: 'buildEnv' 
+    }
+	stages {
+        stage('Build') { 
+            steps { 
+                echo 'Build'
+				//bat 'mvn -s C:/Users/ssrilakshmanan/.m2/settings.xml clean test'
+				echo dev.CH_ENV
+                echo dev.APP_NAME
+				echo "Build Env - ${params.buildEnv}
+            }
+        }
+        stage('Test'){
+            steps {
+                echo 'Test' 
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploy' 
+            }
+        }
+    }
+}

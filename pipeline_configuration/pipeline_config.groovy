@@ -1,19 +1,9 @@
-allow_scm_jenkinsfile = false
-
-libraries {
-	maven
-}
-
-application_environment{
-	merge = true
-	override = false
-	dev{
-		CH_ENV = "DEV"
-		MULE_ENV = "dev"
-	}
-	
-	qa{
-		CH_ENV = "QA"
-		MULE_ENV = "qa"	
-	}
+application_environments{
+  dev{
+    ip_addresses = [ "1.2.3.4", "1.2.3.5" ]
+  }
+  test
+  prod{
+    ip_addresses = [ "1.2.3.6", "1.2.3.7" ]
+  }
 }

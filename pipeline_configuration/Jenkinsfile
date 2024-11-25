@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Test'){
             steps {
-                echo 'Testing ${CH_ENV}' 
+                echo "Testing ${CH_ENV}"
             }
         }
         stage('Deploy') {

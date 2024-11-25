@@ -15,9 +15,10 @@ pipeline {
                 echo "Testing "
             }
         }
-        stage("Deploy to ${param.dev.CH_ENV}") {
+        stage("Deploy") {
             steps {
                 echo "Deploy"
+				echo dev.CH_ENV
             }
         }
     }

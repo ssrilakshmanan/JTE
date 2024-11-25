@@ -1,1 +1,3 @@
-deploy_to dev
+//deploy_to dev
+
+echo dev.long_name

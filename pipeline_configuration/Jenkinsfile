@@ -13,7 +13,7 @@ pipeline {
 				//bat 'mvn -s C:/Users/ssrilakshmanan/.m2/settings.xml clean test'
 				echo dev.CH_ENV
                 echo dev.APP_NAME
-				echo "Build Env - ${params.buildEnv}
+				echo "Build Env - ${params.buildEnv}"
             }
         }
         stage('Test'){

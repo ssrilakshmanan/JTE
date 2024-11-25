@@ -14,6 +14,8 @@ pipeline {
 				echo dev.CH_ENV
                 echo dev.APP_NAME
 				echo "Build Env - ${params.buildEnv}"
+				if (params.buildEnv.equals("dev")){ echo "CloudHub env DEV"}
+				if (params.buildEnv.equals("trn")){ echo "CloudHub env SIT:TRN"}
             }
         }
         stage('Test'){

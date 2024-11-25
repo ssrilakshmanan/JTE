@@ -15,9 +15,9 @@ pipeline {
                 echo "Testing "
             }
         }
-        stage('Deploy') {
+        stage("Deploy to ${dev.CH_ENV}") {
             steps {
-                echo "Deploy to ${dev.CH_ENV}"
+                echo "Deploy"
             }
         }
     }

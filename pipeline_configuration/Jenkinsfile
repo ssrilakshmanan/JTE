@@ -6,7 +6,6 @@ pipeline {
     parameters {
        choice choices: ['dev','stage','trn'], description: 'Pick a build Environment', name: 'buildEnv'
     }
-
 	stages {
         stage('Build') { 
             steps { 
@@ -19,8 +18,6 @@ pipeline {
 				script {
  			       if (params.buildEnv.equals("dev")){ echo "CloudHub env DEV"}
 				   if (params.buildEnv.equals("trn")){ echo "CloudHub env SIT:TRN"}
-				   CH_ENV = if (params.buildEnv.equals("trn")){ return "SIT:TRN"}
-				   echo CH_ENV
 				}
             }
         }

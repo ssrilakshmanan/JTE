@@ -12,6 +12,7 @@ pipeline {
             steps { 
                 echo 'Build'
 				//bat 'mvn -s C:/Users/ssrilakshmanan/.m2/settings.xml clean test'
+				echo "Workspace -- ${WORKSPACE}"
 				echo dev.CH_ENV
                 echo dev.APP_NAME
 				echo "Build Env - ${params.buildEnv}"

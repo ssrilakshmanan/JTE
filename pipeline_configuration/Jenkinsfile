@@ -1,1 +1,24 @@
-build()
+pipeline {
+	agent any
+	tools {
+		maven "maven-3.9.8"
+	}
+	stages {
+        stage('Build') { 
+            steps { 
+                echo 'Build'
+				bat 'mvn -s C:/Users/ssrilakshmanan/.m2/settings.xml clean test'
+            }
+        }
+        stage('Test'){
+            steps {
+                echo 'Testing ${CH_ENV}' 
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploy' 
+            }
+        }
+    }
+}

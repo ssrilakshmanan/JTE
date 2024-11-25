@@ -1,3 +1,5 @@
 //deploy_to dev
 
 echo dev.long_name
+
+echo dev.APP_NAME

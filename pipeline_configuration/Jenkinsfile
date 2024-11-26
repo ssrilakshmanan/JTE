@@ -28,9 +28,10 @@ pipeline {
 						]
 					]
 					
-					yaml = readYaml file: "${WORKSPACE}/src/main/resources/properties/${params.buildEnv}.yaml"
-					if (binding.hasVariable('yaml.WORKER_SIZE')) {
-					   WORKER_SIZE = yaml.WORKER_SIZE
+					prop = readYaml file: "${WORKSPACE}/src/main/resources/properties/comman.yaml"
+					env = readYaml file: "${WORKSPACE}/src/main/resources/properties/${params.buildEnv}.yaml"
+					if (binding.hasVariable('prop.WORKER_SIZE')) {
+					   WORKER_SIZE = prop.WORKER_SIZE
 					}
 				}
 			}
@@ -53,7 +54,7 @@ pipeline {
         stage('Deploy') {
             steps {
 				echo "Deploying..."
-				echo yaml.deployName
+				echo env.deployName
 				echo "Worker Size ${WORKER_SIZE}"
             }
         }

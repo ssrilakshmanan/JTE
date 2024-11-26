@@ -56,7 +56,7 @@ pipeline {
             steps {
 				echo "Deploying..."
 				echo yaml.deployName
-				echo WORKER_SIZE
+				echo "Worker Size ${WORKER_SIZE}"
             }
         }
     }

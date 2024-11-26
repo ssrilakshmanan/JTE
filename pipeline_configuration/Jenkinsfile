@@ -19,9 +19,9 @@ pipeline {
  			       if (params.buildEnv.equals("dev")){ echo "CloudHub env DEV"}
 				   if (params.buildEnv.equals("trn")){ echo "CloudHub env SIT:TRN"}
 				   //def yaml = readYAML file: "${WORKSPACE}/src/main/resources/properties/${params.buildEnv}.yaml"
-				   def yaml = readYaml file: "C:/tools/Jenkins-buildagent/workspace/sgsTest_main/src/main/resources/properties/dev.yaml"
+				   yaml = readYaml file: "C:/tools/Jenkins-buildagent/workspace/sgsTest_main/src/main/resources/properties/dev.yaml"
 				   echo "Deploying..."
-				   echo env.deployName
+				   echo yaml.deployName
 				}
             }
         }

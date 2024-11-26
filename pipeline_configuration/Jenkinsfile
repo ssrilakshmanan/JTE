@@ -33,9 +33,12 @@ pipeline {
 					
 					echo "prop['WORKER_SIZE']  " + prop['WORKER_SIZE']
 					echo "prop.WORKER_SIZE ${prop.WORKER_SIZE}"
-					echo "WORKER_SIZE ${WORKER_SIZE}"
+					echo "DEFAULT_WORKER_SIZE ${DEFAULT_WORKER_SIZE}"
 				
  				    WORKER_SIZE = prop['WORKER_SIZE'] ?: DEFAULT_WORKER_SIZE
+					
+					echo "WORKER_SIZE ${WORKER_SIZE}"
+					
 				}
 			}
 		}

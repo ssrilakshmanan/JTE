@@ -28,6 +28,7 @@ pipeline {
 						]
 					]
 					
+					def yaml.WORKER_SIZE
 					yaml = readYaml file: "${WORKSPACE}/src/main/resources/properties/${params.buildEnv}.yaml"
 					def WORKER_SIZE = yaml.WORKER_SIZE ?: DEFAULT_WORKER_SIZE
 				}

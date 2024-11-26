@@ -18,6 +18,9 @@ pipeline {
 				script {
  			       if (params.buildEnv.equals("dev")){ echo "CloudHub env DEV"}
 				   if (params.buildEnv.equals("trn")){ echo "CloudHub env SIT:TRN"}
+				   def yaml = readYAML file: "${WORKSPACE}/src/main/resources/properties/${params.buildEnv}.yaml"
+				   echo "Deploying..."
+				   echo env.deployName
 				}
             }
         }

@@ -30,6 +30,10 @@ pipeline {
 					
 					prop = readYaml file: "${WORKSPACE}/src/main/resources/properties/comman.yaml"
 					env = readYaml file: "${WORKSPACE}/src/main/resources/properties/${params.buildEnv}.yaml"
+					
+					echo "prop.WORKER_SIZE ${prop.WORKER_SIZE}"
+					echo "WORKER_SIZE ${WORKER_SIZE}"
+					
 					if (binding.hasVariable('prop.WORKER_SIZE')) {
 					   WORKER_SIZE = prop.WORKER_SIZE
 					}

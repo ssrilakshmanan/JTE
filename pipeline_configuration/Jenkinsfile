@@ -8,20 +8,26 @@ pipeline {
     }
 	stages {
 	    stage ('Init') {
-			def envMap = [
-				"dev": [
-					"CH_ENV": "DEV",
-					"name": "foo"
-				],
-				"qa": [
-					"CH_ENV": "QA",
-					"name": "bar"
-				],
-				"trn": [
-					"CH_ENV": "SIT:TRN",
-					"name": "foo"
-				]
-			]		
+		    steps {
+			    script {
+					def envMap = [
+						"dev": [
+							"CH_ENV": "DEV",
+							"name": "foo"
+						],
+						"qa": [
+							"CH_ENV": "QA",
+							"name": "bar"
+						],
+						"trn": [
+							"CH_ENV": "SIT:TRN",
+							"name": "foo"
+						]
+					]
+					
+					yaml = readYaml file: "${WORKSPACE}/src/main/resources/properties/${params.buildEnv}.yaml"
+				}
+			}
 		}
         stage('Build') { 
             steps { 
@@ -35,7 +41,6 @@ pipeline {
  			       //if (params.buildEnv.equals("dev")){ echo "CloudHub env DEV"}
 				   //if (params.buildEnv.equals("trn")){ echo "CloudHub env SIT:TRN"}
 				   //def yaml = readYAML file: "C:/tools/Jenkins-buildagent/workspace/sgsTest_main/src/main/resources/properties/dev.yaml"
-				   yaml = readYaml file: "${WORKSPACE}/src/main/resources/properties/${params.buildEnv}.yaml"
 				}
             }
         }

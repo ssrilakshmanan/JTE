@@ -34,7 +34,7 @@ pipeline {
 					echo "prop.WORKER_SIZE ${prop.WORKER_SIZE}"
 					echo "WORKER_SIZE ${WORKER_SIZE}"
 					
-					if (binding.hasVariable('prop.WORKER_SIZE')) {
+					if (binding.variables['prop.WORKER_SIZE']) {
 					   WORKER_SIZE = prop.WORKER_SIZE
 					}
 				}

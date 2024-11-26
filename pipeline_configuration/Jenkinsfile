@@ -4,7 +4,7 @@ pipeline {
 		maven "maven-3.9.8"
 	}
 	environment {
-	    WORKER_SIZE = "0.1"
+	    DEFAULT_WORKER_SIZE = "0.1"
 	}
     parameters {
        choice choices: ['dev','qa','stage','trn'], description: 'Pick a build Environment', name: 'buildEnv'
@@ -29,6 +29,7 @@ pipeline {
 					]
 					
 					yaml = readYaml file: "${WORKSPACE}/src/main/resources/properties/${params.buildEnv}.yaml"
+					def WORKER_SIZE = yaml.WORKER_SIZE ?: DEFAULT_WORKER_SIZE
 				}
 			}
 		}

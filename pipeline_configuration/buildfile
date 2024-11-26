@@ -1,0 +1,68 @@
+pipeline {
+	agent any
+	tools {
+		maven "maven-3.9.8"
+	}
+	environment {
+	    DEFAULT_WORKER_SIZE = "0.1"
+	}
+    parameters {
+       choice choices: ['dev','qa','stage','trn'], description: 'Pick a build Environment', name: 'buildEnv'
+    }
+	stages {
+	    stage ('Init') {
+		    steps {
+			    script {
+					def envMap = [
+						"dev": [
+							"CH_ENV": "DEV",
+							"name": "foo"
+						],
+						"qa": [
+							"CH_ENV": "QA",
+							"name": "bar"
+						],
+						"trn": [
+							"CH_ENV": "SIT:TRN",
+							"name": "foo"
+						]
+					]
+					
+					prop = readYaml file: "${WORKSPACE}/src/main/resources/properties/comman.yaml"
+					env = readYaml file: "${WORKSPACE}/src/main/resources/properties/${params.buildEnv}.yaml"
+					
+					echo "prop['WORKER_SIZE']  " + prop['WORKER_SIZE']
+					echo "prop.WORKER_SIZE ${prop.WORKER_SIZE}"
+					echo "DEFAULT_WORKER_SIZE ${DEFAULT_WORKER_SIZE}"
+				
+ 				    WORKER_SIZE = prop['WORKER_SIZE'] ?: DEFAULT_WORKER_SIZE
+					
+					echo "WORKER_SIZE ${WORKER_SIZE}"
+					
+				}
+			}
+		}
+        stage('Build') { 
+            steps { 
+                echo 'Build'
+				//bat 'mvn -s C:/Users/ssrilakshmanan/.m2/settings.xml clean test'
+				echo "Workspace -- ${WORKSPACE}"
+				echo dev.CH_ENV
+				echo "Build Env - ${params.buildEnv}"
+				//echo "CloudHub env " + evaluate("envMap.${params.buildEnv}.CH_ENV")
+            }
+        }
+        stage('Test'){
+            steps {
+                echo 'Test' 
+            }
+        }
+        stage('Deploy') {
+            steps {
+				echo "Deploying..."
+				echo env.deployName
+				echo "Worker Size ${WORKER_SIZE}"
+            }
+        }
+    }
+}

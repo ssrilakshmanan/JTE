@@ -13,13 +13,13 @@ pipeline {
 				//bat 'mvn -s C:/Users/ssrilakshmanan/.m2/settings.xml clean test'
 				echo "Workspace -- ${WORKSPACE}"
 				echo dev.CH_ENV
-                echo dev.APP_NAME
+
 				echo "Build Env - ${params.buildEnv}"
 				script {
  			       if (params.buildEnv.equals("dev")){ echo "CloudHub env DEV"}
 				   if (params.buildEnv.equals("trn")){ echo "CloudHub env SIT:TRN"}
 				   //def yaml = readYAML file: "C:/tools/Jenkins-buildagent/workspace/sgsTest_main/src/main/resources/properties/dev.yaml"
-				   yaml = readYaml file: "${WORKSPACE}/src/main/resources/properties/${params.buildEnv}.yaml"
+				   dev = readYaml file: "${WORKSPACE}/src/main/resources/properties/${params.buildEnv}.yaml"
 				}
             }
         }
@@ -31,7 +31,7 @@ pipeline {
         stage('Deploy') {
             steps {
 				echo "Deploying..."
-				echo yaml.deployName
+				echo dev.deployName
             }
         }
     }
